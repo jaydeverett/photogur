@@ -7,17 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if @picture.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-    <ul>
-    <% @picture.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+  <% if flash.any? %>
+      <% flash.each do |key, value| %>
+        <p class=“<%= key %>“>
+          <%= value %>
+        </p>
+      <% end %>
     <% end %>
-    </ul>
-  </div>
-<% end %>
+
+   <p class=“userinfo”>
+      <% if current_user %>
+      Signed in as <%= current_user.email %>. <%= link_to “Logout”, sessions_path(“current”), :method => :delete %>
+      <% else %>
+      <%= link_to “Log in”, new_sessions_path %> or <%= link_to “Sign up”, new_users_path %>
+      <% end %>
+    </p>
 
 <%= yield %>
 
