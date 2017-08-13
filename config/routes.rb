@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   delete 'pictures/:id' => 'pictures#destroy'
 
   get 'pictures/:id' => 'pictures#show'
+
+  resources :users
 end
