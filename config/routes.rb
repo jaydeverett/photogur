@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   get 'pictures/:id' => 'pictures#show'
 
-  resources :users
+  resource :users, only: %i(create new)
+  resource :sessions, only: %i(create new destroy)
 end
